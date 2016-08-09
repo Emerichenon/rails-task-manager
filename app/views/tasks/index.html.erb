@@ -3,8 +3,14 @@
 <ul>
   <% @tasks.each do |task| %>
     <li>
-      <%= task.description %>
+      <%= link_to task.description, task_path(task) %>
       <%= task.done %>
+      <%= link_to "Edit", edit_task_path(task) %>
+      <%= link_to "Delete", task_path(task),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
     </li>
   <% end %>
 </ul>
+
+<%= link_to "Add a task", new_task_path %>
